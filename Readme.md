@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Павел Лотонин](https://up.htmlacademy.ru/react/6/user/917325).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Белявский](https://htmlacademy.ru/profile/id666435).
 
 ---
 
