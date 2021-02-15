@@ -1,6 +1,11 @@
 import React from 'react';
+import CardSmall from '../card-small/card-small';
+import PropTypes from 'prop-types';
 
-const Film = () => {
+const Film = (props) => {
+  const films = [...props.films];
+  films.shift();
+  films.length = 4;
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -105,15 +110,16 @@ const Film = () => {
                 <p>
                   In the 1930s, the Grand Budapest Hotel is a popular European
                   ski resort, presided over by concierge Gustave H. (Ralph
-                  Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend
-                  and protege.
+                  Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s
+                  friend and protege.
                 </p>
                 <p>
                   Gustave prides himself on providing first-class service to the
-                  hotel&apos;s guests, including satisfying the sexual needs of the
-                  many elderly women who stay there. When one of Gustave&apos;s
-                  lovers dies mysteriously, Gustave finds himself the recipient
-                  of a priceless painting and the chief suspect in her murder.
+                  hotel&apos;s guests, including satisfying the sexual needs of
+                  the many elderly women who stay there. When one of
+                  Gustave&apos;s lovers dies mysteriously, Gustave finds himself
+                  the recipient of a priceless painting and the chief suspect in
+                  her murder.
                 </p>
                 <p className="movie-card__director">
                   <strong>Director: Wes Andreson</strong>
@@ -133,66 +139,9 @@ const Film = () => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                  alt="Fantastic Beasts: The Crimes of Grindelwald"
-                  width={280}
-                  height={175}
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Fantastic Beasts: The Crimes of Grindelwald
-                </a>
-              </h3>
-            </article>
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/bohemian-rhapsody.jpg"
-                  alt="Bohemian Rhapsody"
-                  width={280}
-                  height={175}
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Bohemian Rhapsody
-                </a>
-              </h3>
-            </article>
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/macbeth.jpg"
-                  alt="Macbeth"
-                  width={280}
-                  height={175}
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Macbeth
-                </a>
-              </h3>
-            </article>
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/aviator.jpg"
-                  alt="Aviator"
-                  width={280}
-                  height={175}
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Aviator
-                </a>
-              </h3>
-            </article>
+            {films.map((el, i) => (
+              <CardSmall film={el} key={i} />
+            ))}
           </div>
         </section>
         <footer className="page-footer">
@@ -210,6 +159,14 @@ const Film = () => {
       </div>
     </>
   );
+};
+
+Film.propTypes = {
+  films: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+      }),
+  ),
 };
 
 export default Film;

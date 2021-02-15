@@ -11,6 +11,8 @@ const Genres = (props) => {
   );
 };
 
-Genres.propTypes = PropTypes.string.isRequired;
+Genres.propTypes = {
+  genre: PropTypes.string.isRequired,
+};
 
 export default Genres;

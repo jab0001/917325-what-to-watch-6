@@ -1,6 +1,8 @@
 import React from 'react';
+import Raiting from '../raiting/raiting';
+import PropTypes from 'prop-types';
 
-const AddReview = () => {
+const AddReview = (props) => {
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
@@ -55,108 +57,9 @@ const AddReview = () => {
         <form action="#" className="add-review__form">
           <div className="rating">
             <div className="rating__stars">
-              <input
-                className="rating__input"
-                id="star-1"
-                type="radio"
-                name="rating"
-                defaultValue={1}
-              />
-              <label className="rating__label" htmlFor="star-1">
-                Rating 1
-              </label>
-              <input
-                className="rating__input"
-                id="star-2"
-                type="radio"
-                name="rating"
-                defaultValue={2}
-              />
-              <label className="rating__label" htmlFor="star-2">
-                Rating 2
-              </label>
-              <input
-                className="rating__input"
-                id="star-3"
-                type="radio"
-                name="rating"
-                defaultValue={3}
-                defaultChecked
-              />
-              <label className="rating__label" htmlFor="star-3">
-                Rating 3
-              </label>
-              <input
-                className="rating__input"
-                id="star-4"
-                type="radio"
-                name="rating"
-                defaultValue={4}
-              />
-              <label className="rating__label" htmlFor="star-4">
-                Rating 4
-              </label>
-              <input
-                className="rating__input"
-                id="star-5"
-                type="radio"
-                name="rating"
-                defaultValue={5}
-              />
-              <label className="rating__label" htmlFor="star-5">
-                Rating 5
-              </label>
-              <input
-                className="rating__input"
-                id="star-6"
-                type="radio"
-                name="rating"
-                defaultValue={6}
-              />
-              <label className="rating__label" htmlFor="star-6">
-                Rating 6
-              </label>
-              <input
-                className="rating__input"
-                id="star-7"
-                type="radio"
-                name="rating"
-                defaultValue={7}
-              />
-              <label className="rating__label" htmlFor="star-7">
-                Rating 7
-              </label>
-              <input
-                className="rating__input"
-                id="star-8"
-                type="radio"
-                name="rating"
-                defaultValue={8}
-                defaultChecked
-              />
-              <label className="rating__label" htmlFor="star-8">
-                Rating 8
-              </label>
-              <input
-                className="rating__input"
-                id="star-9"
-                type="radio"
-                name="rating"
-                defaultValue={9}
-              />
-              <label className="rating__label" htmlFor="star-9">
-                Rating 9
-              </label>
-              <input
-                className="rating__input"
-                id="star-10"
-                type="radio"
-                name="rating"
-                defaultValue={10}
-              />
-              <label className="rating__label" htmlFor="star-10">
-                Rating 10
-              </label>
+              {props.raiting.map((el, i) => (
+                <Raiting raiting={el} key={i} />
+              ))}
             </div>
           </div>
           <div className="add-review__text">
@@ -177,6 +80,10 @@ const AddReview = () => {
       </div>
     </section>
   );
+};
+
+AddReview.propTypes = {
+  raiting: PropTypes.arrayOf(PropTypes.number.isRequired),
 };
 
 export default AddReview;

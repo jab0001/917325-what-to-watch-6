@@ -23,10 +23,10 @@ const App = (props) => {
           <MyList />
         </Route>
         <Route exact path="/films/:id?/review">
-          <AddReview />
+          <AddReview raiting={props.raiting} />
         </Route>
         <Route exact path="/films/:id?">
-          <Film />
+          <Film films={props.films}/>
         </Route>
         <Route exact path="/player/:id?">
           <Player />
@@ -48,6 +48,7 @@ App.propTypes = {
       })
   ),
   genres: PropTypes.arrayOf(PropTypes.string.isRequired),
+  raiting: PropTypes.arrayOf(PropTypes.number.isRequired),
 };
 
 export default App;

@@ -5,6 +5,9 @@ import Genres from '../genres/genres';
 import PropTypes from 'prop-types';
 
 const Main = (props) => {
+  const films = [...props.films];
+  films.shift();
+
   return (
     <>
       <section className="movie-card">
@@ -47,7 +50,7 @@ const Main = (props) => {
             ))}
           </ul>
           <div className="catalog__movies-list">
-            {props.films.slice(1, props.films.lenght).map((el, i) => (
+            {films.map((el, i) => (
               <CardSmall key={i} film={el} />
             ))}
           </div>
