@@ -11,7 +11,7 @@ const MyList = (props) => {
 
   return (
     <div className="user-page">
-      <Header className={`user-page__head`}>
+      <Header className="user-page__head">
         <h1 className="page-title user-page__title">My list</h1>
         <UserLogo />
       </Header>

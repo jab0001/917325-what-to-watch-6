@@ -16,7 +16,7 @@ const AddReview = (props) => {
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <Header className={``}>
+        <Header>
           <Breadcrumbs />
           <UserLogo />
         </Header>

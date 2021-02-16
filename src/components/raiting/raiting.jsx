@@ -8,7 +8,7 @@ const Raiting = (props) => {
     <>
       <input
         className="rating__input"
-        id={`star-${props.raiting}`}
+        id={raitingStars}
         type="radio"
         name="rating"
         defaultValue={props.raiting}

@@ -20,7 +20,7 @@ const Film = (props) => {
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
-          <Header className={`movie-card__head`}>
+          <Header className="movie-card__head">
             <UserLogo />
           </Header>
           <div className="movie-card__wrap">

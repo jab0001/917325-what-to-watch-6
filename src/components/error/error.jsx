@@ -5,7 +5,7 @@ import Header from '../header/header';
 const Error = () => {
   return (
     <div className="user-page">
-      <Header className={``}/>
+      <Header/>
       <div className="sign-in user-page__content">
         <h1>404 Not Found</h1>
         <Link to="/"><p>Ссылка на главную</p></Link>

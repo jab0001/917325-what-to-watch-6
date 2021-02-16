@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Header = (props) => {
-  const nameCss = `page-header ${props.className}`;
+  const className = props.className || ``;
+
   return (
-    <header className={nameCss}>
+    <header className={`page-header ${className}`}>
       <div className="logo">
         <a className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
@@ -18,8 +19,8 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  className: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.object,
 };
 
 export default Header;

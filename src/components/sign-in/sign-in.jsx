@@ -4,7 +4,7 @@ import Header from '../header/header';
 const SignIn = () => {
   return (
     <div className="user-page">
-      <Header className={`user-page__head`}>
+      <Header className="user-page__head">
         <h1 className="page-title user-page__title">Sign in</h1>
       </Header>
       <div className="sign-in user-page__content">
