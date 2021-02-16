@@ -2,6 +2,8 @@ import React from 'react';
 import CardSmall from '../card-small/card-small';
 import CardBig from '../card-big.jsx/card-big';
 import Genres from '../genres/genres';
+import Header from '../header/header';
+import UserLogo from '../user-logo/user-logo';
 import PropTypes from 'prop-types';
 
 const Main = (props) => {
@@ -18,25 +20,9 @@ const Main = (props) => {
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width={63}
-                height={63}
-              />
-            </div>
-          </div>
-        </header>
+        <Header className={`movie-card__head`}>
+          <UserLogo />
+        </Header>
         <div className="movie-card__wrap">
           <CardBig film={props.films[0]} />
         </div>
@@ -83,7 +69,7 @@ Main.propTypes = {
         title: PropTypes.string.isRequired,
         genre: PropTypes.string,
         year: PropTypes.number,
-      }),
+      })
   ),
   genres: PropTypes.arrayOf(PropTypes.string.isRequired),
 };

@@ -1,11 +1,14 @@
 import React from 'react';
 import CardSmall from '../card-small/card-small';
+import Header from '../header/header';
+import UserLogo from '../user-logo/user-logo';
 import PropTypes from 'prop-types';
 
 const Film = (props) => {
   const films = [...props.films];
   films.shift();
   films.length = 4;
+
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -17,25 +20,9 @@ const Film = (props) => {
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width={63}
-                  height={63}
-                />
-              </div>
-            </div>
-          </header>
+          <Header className={`movie-card__head`}>
+            <UserLogo />
+          </Header>
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
               <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
@@ -165,7 +152,7 @@ Film.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-      }),
+      })
   ),
 };
 

@@ -20,7 +20,7 @@ const App = (props) => {
           <SignIn />
         </Route>
         <Route exact path="/mylist">
-          <MyList />
+          <MyList films={props.films}/>
         </Route>
         <Route exact path="/films/:id?/review">
           <AddReview raiting={props.raiting} />

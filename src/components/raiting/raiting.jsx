@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Raiting = (props) => {
+  const raitingStars = `star-${props.raiting}`;
+
   return (
     <>
       <input
@@ -11,7 +13,7 @@ const Raiting = (props) => {
         name="rating"
         defaultValue={props.raiting}
       />
-      <label className="rating__label" htmlFor={`star-${props.raiting}`}>
+      <label className="rating__label" htmlFor={raitingStars}>
         Rating {props.raiting}
       </label>
     </>
