@@ -41,7 +41,7 @@ CardBig.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
   }),
 };
 
