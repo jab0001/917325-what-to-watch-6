@@ -8,8 +8,8 @@ const propReview = {
         backgroundImage: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
       })
-    ),
-    raiting: PropTypes.arrayOf(PropTypes.number.isRequired),
+  ),
+  raiting: PropTypes.arrayOf(PropTypes.number.isRequired),
 };
 
 export default propReview;
