@@ -1,9 +1,12 @@
 import React from 'react';
+import propPlayer from './prop-player';
 
-const Player = () => {
+const Player = (props) => {
+  const film = props.films.find((item) => item.id === +props.match.params.id);
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg" />
+      <video src={film.videoLink} className="player__video" poster={film.posterImage} />
       <button type="button" className="player__exit">
         Exit
       </button>
@@ -36,5 +39,7 @@ const Player = () => {
     </div>
   );
 };
+
+Player.propTypes = propPlayer;
 
 export default Player;

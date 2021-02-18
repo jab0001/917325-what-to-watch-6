@@ -12,6 +12,9 @@ const Raiting = (props) => {
         type="radio"
         name="rating"
         defaultValue={props.raiting}
+        onChange={(evt) => {
+          props.setUserReview(+evt.target.value);
+        }}
       />
       <label className="rating__label" htmlFor={raitingStars}>
         Rating {props.raiting}
@@ -22,6 +25,7 @@ const Raiting = (props) => {
 
 Raiting.propTypes = {
   raiting: PropTypes.number.isRequired,
+  setUserReview: PropTypes.func.isRequired,
 };
 
 export default Raiting;

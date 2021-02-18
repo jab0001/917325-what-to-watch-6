@@ -1,22 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import CardSmall from '../card-small/card-small';
 import CardBig from '../card-big.jsx/card-big';
 import Genres from '../genres/genres';
 import Header from '../header/header';
 import UserLogo from '../user-logo/user-logo';
-import PropTypes from 'prop-types';
+import propMain from './prop-main';
 
 const Main = (props) => {
-  const films = [...props.films];
-  films.shift();
+  const [headerFilm, setFilm] = useState(props.headerFilm);
 
   return (
     <>
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={headerFilm.backgroundImage}
+            alt={headerFilm.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -24,7 +23,7 @@ const Main = (props) => {
           <UserLogo />
         </Header>
         <div className="movie-card__wrap">
-          <CardBig film={props.films[0]} />
+          <CardBig film={headerFilm} />
         </div>
       </section>
       <div className="page-content">
@@ -36,8 +35,8 @@ const Main = (props) => {
             ))}
           </ul>
           <div className="catalog__movies-list">
-            {films.map((el, i) => (
-              <CardSmall key={i} film={el} />
+            {props.films.map((el, i) => (
+              <CardSmall key={i} film={el} hover={setFilm}/>
             ))}
           </div>
           <div className="catalog__more">
@@ -63,15 +62,6 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string,
-        year: PropTypes.number,
-      })
-  ),
-  genres: PropTypes.arrayOf(PropTypes.string.isRequired),
-};
+Main.propTypes = propMain;
 
 export default Main;

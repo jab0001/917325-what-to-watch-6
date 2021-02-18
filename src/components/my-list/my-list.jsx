@@ -1,13 +1,11 @@
 import React from 'react';
 import CardSmall from '../card-small/card-small';
-import PropTypes from 'prop-types';
 import Header from '../header/header';
 import UserLogo from '../user-logo/user-logo';
+import propMyList from './prop-my-list';
+import {Link} from 'react-router-dom';
 
 const MyList = (props) => {
-  const films = [...props.films];
-  films.shift();
-  films.length = 7;
 
   return (
     <div className="user-page">
@@ -18,18 +16,18 @@ const MyList = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <div className="catalog__movies-list">
-          {films.map((film, id) => (
+          {props.films.map((film, id) => (
             <CardSmall film={film} key={id} />
           ))}
         </div>
       </section>
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <Link to="/" className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
@@ -39,12 +37,6 @@ const MyList = (props) => {
   );
 };
 
-MyList.propTypes = {
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-      })
-  ),
-};
+MyList.propTypes = propMyList;
 
 export default MyList;
