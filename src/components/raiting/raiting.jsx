@@ -15,6 +15,7 @@ const Raiting = (props) => {
         onChange={(evt) => {
           props.setUserReview(+evt.target.value);
         }}
+        checked={props.userReview === props.raiting}
       />
       <label className="rating__label" htmlFor={raitingStars}>
         Rating {props.raiting}
@@ -26,6 +27,7 @@ const Raiting = (props) => {
 Raiting.propTypes = {
   raiting: PropTypes.number.isRequired,
   setUserReview: PropTypes.func.isRequired,
+  userReview: PropTypes.number.isRequired,
 };
 
 export default Raiting;
