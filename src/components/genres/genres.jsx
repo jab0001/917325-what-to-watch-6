@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Genres = (props) => {
+  const {genre} = props;
+
   return (
     <li className="catalog__genres-item">
       <a href="#" className="catalog__genres-link">
-        {props.genre}
+        {genre}
       </a>
     </li>
   );
 };
 
+const {string} = PropTypes;
+
 Genres.propTypes = {
-  genre: PropTypes.string.isRequired,
+  genre: string.isRequired,
 };
 
 export default Genres;

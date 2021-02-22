@@ -1,12 +1,17 @@
 import React from 'react';
-import propPlayer from './prop-player';
+import PropTypes from 'prop-types';
 
 const Player = (props) => {
-  const film = props.films.find((item) => item.id === +props.match.params.id);
+  const {films} = props;
+  const film = films.find(({id}) => id === +props.match.params.id);
 
   return (
     <div className="player">
-      <video src={film.videoLink} className="player__video" poster={film.posterImage} />
+      <video
+        src={film.videoLink}
+        className="player__video"
+        poster={film.posterImage}
+      />
       <button type="button" className="player__exit">
         Exit
       </button>
@@ -40,6 +45,35 @@ const Player = (props) => {
   );
 };
 
-Player.propTypes = propPlayer;
+const {number, string, arrayOf, shape, bool} = PropTypes;
+
+Player.propTypes = {
+  films: arrayOf(
+      shape({
+        id: number.isRequired,
+        name: string.isRequired,
+        posterImage: string.isRequired,
+        previewImage: string.isRequired,
+        backgroundImage: string.isRequired,
+        backgroundColor: string.isRequired,
+        videoLink: string.isRequired,
+        previewVideoLink: string.isRequired,
+        description: string.isRequired,
+        rating: number.isRequired,
+        scoresCount: number.isRequired,
+        director: string.isRequired,
+        starring: arrayOf(string.isRequired),
+        runTime: number.isRequired,
+        genre: string.isRequired,
+        released: number.isRequired,
+        isFavorite: bool.isRequired,
+      })
+  ),
+  match: shape({
+    params: shape({
+      id: string.isRequired,
+    }),
+  }),
+};
 
 export default Player;

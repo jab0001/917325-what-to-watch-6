@@ -2,22 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CardBig = (props) => {
+  const {posterImage, name, genre, released} = props.film;
 
   return (
     <div className="movie-card__info">
       <div className="movie-card__poster">
         <img
-          src={props.film.posterImage}
-          alt={props.film.name}
+          src={posterImage}
+          alt={name}
           width={218}
           height={327}
         />
       </div>
       <div className="movie-card__desc">
-        <h2 className="movie-card__title">{props.film.name}</h2>
+        <h2 className="movie-card__title">{name}</h2>
         <p className="movie-card__meta">
-          <span className="movie-card__genre">{props.film.genre}</span>
-          <span className="movie-card__year">{props.film.released}</span>
+          <span className="movie-card__genre">{genre}</span>
+          <span className="movie-card__year">{released}</span>
         </p>
         <div className="movie-card__buttons">
           <button className="btn btn--play movie-card__button" type="button">
@@ -38,12 +39,14 @@ const CardBig = (props) => {
   );
 };
 
+const {shape, string, number} = PropTypes;
+
 CardBig.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    released: PropTypes.number.isRequired,
-    posterImage: PropTypes.string.isRequired,
+  film: shape({
+    name: string.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+    posterImage: string.isRequired,
   }),
 };
 

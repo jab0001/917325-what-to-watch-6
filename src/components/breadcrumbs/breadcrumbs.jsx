@@ -3,12 +3,14 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Breadcrumbs = (props) => {
+  const {id, name} = props.film;
+
   return (
     <nav className="breadcrumbs">
       <ul className="breadcrumbs__list">
         <li className="breadcrumbs__item">
-          <Link to={`/films/${props.film.id}`} className="breadcrumbs__link">
-            {props.film.name}
+          <Link to={`/films/${id}`} className="breadcrumbs__link">
+            {name}
           </Link>
         </li>
         <li className="breadcrumbs__item">
@@ -19,10 +21,12 @@ const Breadcrumbs = (props) => {
   );
 };
 
+const {shape, string, number} = PropTypes;
+
 Breadcrumbs.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+  film: shape({
+    name: string.isRequired,
+    id: number.isRequired,
   }),
 };
 

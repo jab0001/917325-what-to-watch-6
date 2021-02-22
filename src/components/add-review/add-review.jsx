@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import Raiting from '../raiting/raiting';
-import Header from '../header/header';
+import Logo from '../logo/logo';
 import UserLogo from '../user-logo/user-logo';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
-import propReview from './prop-review';
+import PropTypes from 'prop-types';
 
 const AddReview = (props) => {
-  const film = props.films.find((item) => item.id === +props.match.params.id);
+  const film = props.films.find(({id}) => id === +props.match.params.id);
   const [userFormText, setUserFormText] = useState(``);
   const [userReview, setUserReview] = useState(10);
 
@@ -25,10 +25,12 @@ const AddReview = (props) => {
           <img src={film.backgroundImage} alt={film.name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <Header>
-          <Breadcrumbs film={film} />
-          <UserLogo />
-        </Header>
+        <header className="page-header user-page__head">
+          <Logo>
+            <Breadcrumbs film={film} />
+            <UserLogo />
+          </Logo>
+        </header>
         <div className="movie-card__poster movie-card__poster--small">
           <img
             src={film.posterImage}
@@ -39,7 +41,7 @@ const AddReview = (props) => {
         </div>
       </div>
       <div className="add-review">
-        <form action="#" className="add-review__form">
+        <form action="#" className="add-review__form" onSubmit={handleSubmit}>
           <div className="rating">
             <div className="rating__stars">
               {props.raiting.map((el, i) => (
@@ -64,11 +66,7 @@ const AddReview = (props) => {
               {userFormText}
             </textarea>
             <div className="add-review__submit">
-              <button
-                className="add-review__btn"
-                type="submit"
-                onClick={handleSubmit}
-              >
+              <button className="add-review__btn" type="submit">
                 Post
               </button>
             </div>
@@ -79,6 +77,23 @@ const AddReview = (props) => {
   );
 };
 
-AddReview.propTypes = propReview;
+const {arrayOf, shape, string, number} = PropTypes;
+
+AddReview.propTypes = {
+  films: arrayOf(
+      shape({
+        name: string.isRequired,
+        posterImage: string.isRequired,
+        backgroundImage: string.isRequired,
+        id: number.isRequired,
+      })
+  ),
+  raiting: arrayOf(number.isRequired),
+  match: shape({
+    params: shape({
+      id: string.isRequired,
+    }),
+  }),
+};
 
 export default AddReview;

@@ -3,34 +3,47 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 const CardSmall = (props) => {
-  const event = props.hover ? () => props.hover(props.film) : () => {};
+  const {setFilm, film} = props;
+  const {posterImage, name, id} = props.film;
+
+  const isEventSet = () => {
+    if (setFilm) {
+      return setFilm(film);
+    }
+    return null;
+  };
 
   return (
-    <article className="small-movie-card catalog__movies-card" onMouseOver={event}>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseOver={() => isEventSet()}
+    >
       <div className="small-movie-card__image">
         <img
-          src={props.film.posterImage}
-          alt={props.film.name}
+          src={posterImage}
+          alt={name}
           width={280}
           height={175}
         />
       </div>
       <h3 className="small-movie-card__title">
-        <Link className="small-movie-card__link" to={`/films/${props.film.id}`}>
-          {props.film.name}
+        <Link className="small-movie-card__link" to={`/films/${id}`}>
+          {name}
         </Link>
       </h3>
     </article>
   );
 };
 
+const {shape, string, number, func} = PropTypes;
+
 CardSmall.propTypes = {
-  film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    posterImage: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+  film: shape({
+    name: string.isRequired,
+    posterImage: string.isRequired,
+    id: number.isRequired,
   }),
-  hover: PropTypes.func,
+  setFilm: func,
 };
 
 export default CardSmall;

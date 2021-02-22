@@ -1,13 +1,14 @@
 import React from 'react';
-import Header from '../header/header';
-import Footer from '../footer/footer';
+import Logo from '../logo/logo';
+import Copyright from '../copyright/copyright';
 
 const SignIn = () => {
   return (
     <div className="user-page">
-      <Header className="user-page__head">
+      <header className="page-header user-page__head">
         <h1 className="page-title user-page__title">Sign in</h1>
-      </Header>
+        <Logo></Logo>
+      </header>
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
           <div className="sign-in__fields">
@@ -49,7 +50,11 @@ const SignIn = () => {
           </div>
         </form>
       </div>
-      <Footer />
+      <footer className="page-footer">
+        <Logo className="logo__link--light">
+          <Copyright />
+        </Logo>
+      </footer>
     </div>
   );
 };

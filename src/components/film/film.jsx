@@ -1,28 +1,27 @@
 import React from 'react';
 import CardSmall from '../card-small/card-small';
-import Header from '../header/header';
+import Logo from '../logo/logo';
 import UserLogo from '../user-logo/user-logo';
-import propFilm from './prop-film';
 import {Link} from 'react-router-dom';
-import Footer from '../footer/footer';
+import Copyright from '../copyright/copyright';
+import PropTypes from 'prop-types';
 
 const Film = (props) => {
-  const film = props.films.find((item) => item.id === +props.match.params.id);
+  const film = props.films.find(({id}) => id === +props.match.params.id);
 
   return (
     <>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img
-              src={film.backgroundImage}
-              alt={film.name}
-            />
+            <img src={film.backgroundImage} alt={film.name} />
           </div>
           <h1 className="visually-hidden">WTW</h1>
-          <Header className="movie-card__head">
-            <UserLogo />
-          </Header>
+          <header className="page-header movie-card__head">
+            <Logo>
+              <UserLogo />
+            </Logo>
+          </header>
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{film.name}</h2>
@@ -49,7 +48,10 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={`${props.match.params.id}/review`} className="btn movie-card__button">
+                <Link
+                  to={`${props.match.params.id}/review`}
+                  className="btn movie-card__button"
+                >
                   Add review
                 </Link>
               </div>
@@ -90,13 +92,13 @@ const Film = (props) => {
                 <div className="movie-rating__score">{film.scoresCount}</div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{film.rating} ratings</span>
+                  <span className="movie-rating__count">
+                    {film.rating} ratings
+                  </span>
                 </p>
               </div>
               <div className="movie-card__text">
-                <p>
-                  {film.description}
-                </p>
+                <p>{film.description}</p>
                 <p className="movie-card__director">
                   <strong>Director: {film.director}</strong>
                 </p>
@@ -119,12 +121,45 @@ const Film = (props) => {
             ))}
           </div>
         </section>
-        <Footer />
+        <footer className="page-footer">
+          <Logo className="logo__link--light">
+            <Copyright />
+          </Logo>
+        </footer>
       </div>
     </>
   );
 };
 
-Film.propTypes = propFilm;
+const {number, string, arrayOf, shape, bool} = PropTypes;
+
+Film.propTypes = {
+  films: arrayOf(
+      shape({
+        id: number.isRequired,
+        name: string.isRequired,
+        posterImage: string.isRequired,
+        previewImage: string.isRequired,
+        backgroundImage: string.isRequired,
+        backgroundColor: string.isRequired,
+        videoLink: string.isRequired,
+        previewVideoLink: string.isRequired,
+        description: string.isRequired,
+        rating: number.isRequired,
+        scoresCount: number.isRequired,
+        director: string.isRequired,
+        starring: arrayOf(string.isRequired),
+        runTime: number.isRequired,
+        genre: string.isRequired,
+        released: number.isRequired,
+        isFavorite: bool.isRequired,
+      })
+  ),
+  match: shape({
+    params: shape({
+      id: string.isRequired,
+    }),
+  }),
+};
 
 export default Film;
