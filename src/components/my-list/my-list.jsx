@@ -1,48 +1,60 @@
 import React from 'react';
 import CardSmall from '../card-small/card-small';
-import PropTypes from 'prop-types';
-import Header from '../header/header';
+import Logo from '../logo/logo';
 import UserLogo from '../user-logo/user-logo';
+import Copyright from '../copyright/copyright';
+import PropTypes from 'prop-types';
 
 const MyList = (props) => {
-  const films = [...props.films];
-  films.shift();
-  films.length = 7;
+  const {films} = props;
 
   return (
     <div className="user-page">
-      <Header className="user-page__head">
-        <h1 className="page-title user-page__title">My list</h1>
-        <UserLogo />
-      </Header>
+      <header className="page-header user-page__head">
+        <Logo>
+          <h1 className="page-title user-page__title">My list</h1>
+          <UserLogo />
+        </Logo>
+      </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <div className="catalog__movies-list">
-          {films.map((film, id) => (
-            <CardSmall film={film} key={id} />
+          {films.map((film, i) => (
+            <CardSmall film={film} key={i} />
           ))}
         </div>
       </section>
       <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
+        <Logo className="logo__link--light">
+          <Copyright />
+        </Logo>
       </footer>
     </div>
   );
 };
 
+const {number, string, arrayOf, shape, bool} = PropTypes;
+
 MyList.propTypes = {
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
+  films: arrayOf(
+      shape({
+        id: number.isRequired,
+        name: string.isRequired,
+        posterImage: string.isRequired,
+        previewImage: string.isRequired,
+        backgroundImage: string.isRequired,
+        backgroundColor: string.isRequired,
+        videoLink: string.isRequired,
+        previewVideoLink: string.isRequired,
+        description: string.isRequired,
+        rating: number.isRequired,
+        scoresCount: number.isRequired,
+        director: string.isRequired,
+        starring: arrayOf(string.isRequired),
+        runTime: number.isRequired,
+        genre: string.isRequired,
+        released: number.isRequired,
+        isFavorite: bool.isRequired,
       })
   ),
 };

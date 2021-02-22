@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Raiting = (props) => {
-  const raitingStars = `star-${props.raiting}`;
+  const {raiting, userReview, setUserReview} = props;
+  const raitingStars = `star-${raiting}`;
 
   return (
     <>
@@ -11,17 +12,25 @@ const Raiting = (props) => {
         id={raitingStars}
         type="radio"
         name="rating"
-        defaultValue={props.raiting}
+        defaultValue={raiting}
+        onChange={(evt) => {
+          setUserReview(+evt.target.value);
+        }}
+        checked={userReview === raiting}
       />
       <label className="rating__label" htmlFor={raitingStars}>
-        Rating {props.raiting}
+        Rating {raiting}
       </label>
     </>
   );
 };
 
+const {number, func} = PropTypes;
+
 Raiting.propTypes = {
-  raiting: PropTypes.number.isRequired,
+  raiting: number.isRequired,
+  setUserReview: func.isRequired,
+  userReview: number.isRequired,
 };
 
 export default Raiting;

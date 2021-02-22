@@ -1,43 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 import CardSmall from '../card-small/card-small';
 import CardBig from '../card-big.jsx/card-big';
 import Genres from '../genres/genres';
-import Header from '../header/header';
+import Logo from '../logo/logo';
 import UserLogo from '../user-logo/user-logo';
 import PropTypes from 'prop-types';
+import Copyright from '../copyright/copyright';
 
 const Main = (props) => {
-  const films = [...props.films];
-  films.shift();
+  const {genres, films} = props;
+  const [headerFilm, setFilm] = useState(props.headerFilm);
 
   return (
     <>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={headerFilm.backgroundImage} alt={headerFilm.name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
-        <Header className="movie-card__head">
-          <UserLogo />
-        </Header>
+        <header className="page-header movie-card__head">
+          <Logo>
+            <UserLogo />
+          </Logo>
+        </header>
         <div className="movie-card__wrap">
-          <CardBig film={props.films[0]} />
+          <CardBig film={headerFilm} />
         </div>
       </section>
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ul className="catalog__genres-list">
-            {props.genres.map((genre) => (
+            {genres.map((genre) => (
               <Genres genre={genre} key={genre} />
             ))}
           </ul>
           <div className="catalog__movies-list">
             {films.map((el, i) => (
-              <CardSmall key={i} film={el} />
+              <CardSmall key={i} film={el} setFilm={setFilm} />
             ))}
           </div>
           <div className="catalog__more">
@@ -47,31 +47,44 @@ const Main = (props) => {
           </div>
         </section>
         <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
+          <Logo className="logo__link--light">
+            <Copyright />
+          </Logo>
         </footer>
       </div>
     </>
   );
 };
 
+const {number, string, arrayOf, shape, bool} = PropTypes;
+
 Main.propTypes = {
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string,
-        year: PropTypes.number,
+  films: arrayOf(
+      shape({
+        id: number.isRequired,
+        name: string.isRequired,
+        posterImage: string.isRequired,
+        previewImage: string.isRequired,
+        backgroundImage: string.isRequired,
+        backgroundColor: string.isRequired,
+        videoLink: string.isRequired,
+        previewVideoLink: string.isRequired,
+        description: string.isRequired,
+        rating: number.isRequired,
+        scoresCount: number.isRequired,
+        director: string.isRequired,
+        starring: arrayOf(string.isRequired),
+        runTime: number.isRequired,
+        genre: string.isRequired,
+        released: number.isRequired,
+        isFavorite: bool.isRequired,
       })
   ),
-  genres: PropTypes.arrayOf(PropTypes.string.isRequired),
+  genres: arrayOf(string.isRequired),
+  headerFilm: shape({
+    backgroundImage: string.isRequired,
+    name: string.isRequired,
+  })
 };
 
 export default Main;

@@ -1,26 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
-const Header = (props) => {
+const Logo = (props) => {
   const className = props.className || ``;
 
   return (
-    <header className={`page-header ${className}`}>
+    <>
       <div className="logo">
-        <a className="logo__link">
+        <Link to="/" className={`logo__link ${className}`}>
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
-        </a>
+        </Link>
       </div>
       {props.children}
-    </header>
+    </>
   );
 };
 
-Header.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.object,
+const {string, oneOfType, object, array} = PropTypes;
+
+Logo.propTypes = {
+  className: string,
+  children: oneOfType([object, array]),
 };
 
-export default Header;
+export default Logo;
