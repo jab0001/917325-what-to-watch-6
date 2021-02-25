@@ -5,24 +5,17 @@ import CardPlayer from '../card-player/card-player';
 
 const CardSmall = (props) => {
   const {setFilm, film} = props;
-  const {posterImage, name, id, previewVideoLink} = props.film;
-
-  const isEventSet = () => {
-    if (setFilm) {
-      return setFilm(film);
-    }
-    return null;
-  };
+  const {posterImage, name, id, previewVideoLink} = film;
 
   const [isActive, setIsActive] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const onMouseEnterHandler = () => {
+  const handleMouseEnter = () => {
     setIsActive(true);
     setIsPlaying(true);
   };
 
-  const onMouseLeaveHeandler = () => {
+  const handleMouseLeave = () => {
     setIsActive(false);
   };
 
@@ -30,12 +23,12 @@ const CardSmall = (props) => {
     <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={() => {
-        isEventSet();
-        onMouseEnterHandler();
+        if (setFilm) {
+          setFilm(film);
+        }
+        handleMouseEnter();
       }}
-      onMouseLeave={() => {
-        onMouseLeaveHeandler();
-      }}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="small-movie-card__image">
         {isActive ? (
@@ -65,6 +58,7 @@ CardSmall.propTypes = {
     name: string.isRequired,
     posterImage: string.isRequired,
     id: number.isRequired,
+    previewVideoLink: string.isRequired,
   }),
   setFilm: func,
 };
