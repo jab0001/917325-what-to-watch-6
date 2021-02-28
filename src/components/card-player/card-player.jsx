@@ -6,6 +6,7 @@ const CardPlayer = (props) => {
 
   const videoRef = createRef();
   let timer = null;
+
   useEffect(() => {
     if (isPlaying) {
       timer = setTimeout(() => {

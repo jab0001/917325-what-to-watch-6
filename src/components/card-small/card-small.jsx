@@ -25,7 +25,7 @@ const CardSmall = (props) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={handleMouseEnter()}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className="small-movie-card__image">
