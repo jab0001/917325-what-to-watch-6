@@ -1,6 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import durations from 'dayjs/plugin/duration';
+import PropTypes from 'prop-types';
 
 dayjs.extend(durations);
 
@@ -19,7 +20,7 @@ const FilmDetails = (props) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-          {starring.map((star) => star).join(`, `)}
+            {starring.map((star) => star).join(`, `)}
           </span>
         </p>
       </div>
@@ -39,6 +40,18 @@ const FilmDetails = (props) => {
       </div>
     </div>
   );
+};
+
+const {shape, arrayOf, string, number} = PropTypes;
+
+FilmDetails.propTypes = {
+  film: shape({
+    starring: arrayOf(string.isRequired),
+    director: string.isRequired,
+    runTime: number.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+  }),
 };
 
 export default FilmDetails;

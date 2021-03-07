@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import FilmDetails from '../film-details/film-details';
 import FilmOverview from '../film-overview/film-overview';
 import FilmReviews from '../film-reviews/film-reviews';
+import PropTypes from 'prop-types';
 
 const FilmTabs = (props) => {
   const {film} = props;
 
   const [tab, setTab] = useState(``);
 
-  const getComponent = (tab) => {
-    switch (tab) {
+  const getComponent = (tabButton) => {
+    switch (tabButton) {
       case `Details`:
         return <FilmDetails film = {film}/>;
       case `Reviews`:
@@ -43,6 +44,21 @@ const FilmTabs = (props) => {
       {getComponent(tab)}
     </>
   );
+};
+
+const {shape, arrayOf, string, number} = PropTypes;
+
+FilmTabs.propTypes = {
+  film: shape({
+    description: string.isRequired,
+    rating: number.isRequired,
+    scoresCount: number.isRequired,
+    director: string.isRequired,
+    starring: arrayOf(string.isRequired),
+    runTime: number.isRequired,
+    genre: string.isRequired,
+    released: number.isRequired,
+  })
 };
 
 export default FilmTabs;

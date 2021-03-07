@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FilmRatings = {
   Bad: {
@@ -62,6 +63,18 @@ const FilmOverview = (props) => {
       </div>
     </>
   );
+};
+
+const {shape, arrayOf, string, number} = PropTypes;
+
+FilmOverview.propTypes = {
+  film: shape({
+    starring: arrayOf(string.isRequired),
+    director: string.isRequired,
+    description: string.isRequired,
+    scoresCount: number.isRequired,
+    rating: number.isRequired,
+  }),
 };
 
 export default FilmOverview;
