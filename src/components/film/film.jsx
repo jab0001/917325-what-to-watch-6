@@ -5,9 +5,12 @@ import UserLogo from '../user-logo/user-logo';
 import {Link} from 'react-router-dom';
 import Copyright from '../copyright/copyright';
 import PropTypes from 'prop-types';
+import FilmTabs from '../film-tabs/film-tabs';
 
 const Film = (props) => {
   const film = props.films.find(({id}) => id === +props.match.params.id);
+
+  const filteredFilms = props.films.filter((elem) => (elem.genre === film.genre) && (elem.id !== film.id)).slice(0, 4);
 
   return (
     <>
@@ -69,45 +72,7 @@ const Film = (props) => {
               />
             </div>
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">
-                      Overview
-                    </a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">
-                      Details
-                    </a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">
-                      Reviews
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <div className="movie-rating">
-                <div className="movie-rating__score">{film.scoresCount}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">
-                    {film.rating} ratings
-                  </span>
-                </p>
-              </div>
-              <div className="movie-card__text">
-                <p>{film.description}</p>
-                <p className="movie-card__director">
-                  <strong>Director: {film.director}</strong>
-                </p>
-                <p className="movie-card__starring">
-                  <strong>
-                    Starring: {film.starring.map((star) => star).join(`, `)}
-                  </strong>
-                </p>
-              </div>
+              <FilmTabs film={film}/>
             </div>
           </div>
         </div>
@@ -116,9 +81,10 @@ const Film = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__movies-list">
-            {props.films.map((el, i) => (
+            {filteredFilms.map((el, i) => (
               <CardSmall film={el} key={i} />
             ))}
+
           </div>
         </section>
         <footer className="page-footer">
