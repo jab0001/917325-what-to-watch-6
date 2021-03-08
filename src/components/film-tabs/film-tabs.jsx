@@ -7,41 +7,42 @@ import PropTypes from 'prop-types';
 const FilmTabs = (props) => {
   const {film} = props;
 
-  const [tab, setTab] = useState(``);
+  const Tab = {
+    OVERVIEW: `overview`,
+    DETAILS: `details`,
+    REVIEWS: `reviews`,
+  };
 
-  const getComponent = (tabButton) => {
-    switch (tabButton) {
-      case `Details`:
-        return <FilmDetails film = {film}/>;
-      case `Reviews`:
-        return <FilmReviews film = {film}/>;
-      default:
-        return <FilmOverview film = {film}/>;
-    }
+  const [tab, setTab] = useState(Tab.OVERVIEW);
+
+  const handleClick = ({target: {dataset}}) => {
+    setTab(dataset.tab);
   };
 
   return (
     <>
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className="movie-nav__item" onClick={()=> setTab(``)}>
-            <a href="#" onClick={(event) => event.preventDefault()} className="movie-nav__link">
+          <li className="movie-nav__item">
+            <p className="movie-nav__link" data-tab={Tab.OVERVIEW} onClick={handleClick}>
               Overview
-            </a>
+            </p>
           </li>
-          <li className="movie-nav__item" onClick={()=> setTab(`Details`)}>
-            <a href="#" onClick={(event) => event.preventDefault()} className="movie-nav__link">
+          <li className="movie-nav__item">
+            <p className="movie-nav__link" data-tab={Tab.DETAILS} onClick={handleClick}>
               Details
-            </a>
+            </p>
           </li>
-          <li className="movie-nav__item" onClick={()=> setTab(`Reviews`)}>
-            <a href="#" onClick={(event) => event.preventDefault()} className="movie-nav__link">
+          <li className="movie-nav__item">
+            <p className="movie-nav__link" data-tab={Tab.REVIEWS} onClick={handleClick}>
               Reviews
-            </a>
+            </p>
           </li>
         </ul>
       </nav>
-      {getComponent(tab)}
+      {tab === Tab.OVERVIEW && <FilmOverview film={film} />}
+      {tab === Tab.REVIEWS && <FilmReviews film={film} />}
+      {tab === Tab.DETAILS && <FilmDetails film={film} />}
     </>
   );
 };

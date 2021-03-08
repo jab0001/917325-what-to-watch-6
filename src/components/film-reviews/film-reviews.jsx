@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FilmReviews = (_props) => {
+const FilmReviews = () => {
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
@@ -111,6 +111,5 @@ const {object} = PropTypes;
 FilmReviews.propTypes = {
   film: object.isRequired,
 };
-
 
 export default FilmReviews;

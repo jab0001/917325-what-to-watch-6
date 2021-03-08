@@ -10,7 +10,7 @@ import FilmTabs from '../film-tabs/film-tabs';
 const Film = (props) => {
   const film = props.films.find(({id}) => id === +props.match.params.id);
 
-  const filteredFilms = props.films.filter((elem) => (elem.genre === film.genre) && (elem.id !== film.id)).slice(0, 4);
+  const filteredFilms = props.films.filter(({genre, id}) => (genre === film.genre) && (id !== film.id)).slice(0, 4);
 
   return (
     <>
@@ -84,7 +84,6 @@ const Film = (props) => {
             {filteredFilms.map((el, i) => (
               <CardSmall film={el} key={i} />
             ))}
-
           </div>
         </section>
         <footer className="page-footer">

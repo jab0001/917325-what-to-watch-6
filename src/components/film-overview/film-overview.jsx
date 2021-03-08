@@ -1,41 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FilmRatings = {
-  Bad: {
+const filmRatings = [
+  {
     TEXT: `Bad`,
     RATING: 0
   },
-  Normal: {
+  {
     TEXT: `Normal`,
     RATING: 3
   },
-  Good: {
+  {
     TEXT: `Good`,
     RATING: 5
   },
-  VeryGood: {
+  {
     TEXT: `Very Good`,
     RATING: 8
   },
-  Awesome: {
+  {
     TEXT: `Awesome`,
     RATING: 10
   }
-};
+];
 
 const getTextRating = (rating) => {
-  if (rating < FilmRatings.Normal.RATING) {
-    return FilmRatings.Bad.TEXT;
-  } else if (rating >= FilmRatings.Normal.RATING && rating < FilmRatings.Good.RATING) {
-    return FilmRatings.Normal.TEXT;
-  } else if (rating >= FilmRatings.Good.RATING && rating < FilmRatings.VeryGood.RATING) {
-    return FilmRatings.Good.TEXT;
-  } else if (rating >= FilmRatings.VeryGood.RATING && rating < FilmRatings.Awesome.RATING) {
-    return FilmRatings.VeryGood.TEXT;
+  let result;
+  for (let i = 0; i < filmRatings.length; i++) {
+    if (rating <= filmRatings[i].RATING) {
+      result = filmRatings[i - 1].TEXT;
+      break;
+    }
   }
-
-  return FilmRatings.Awesome.TEXT;
+  return result;
 };
 
 const FilmOverview = (props) => {

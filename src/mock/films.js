@@ -94,7 +94,7 @@ const FILMS = [
       `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     description:
       `In the 1930s, macbeth is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege.`,
-    rating: 7.6,
+    rating: 3.6,
     scoresCount: 180,
     director: `Justin Kurzel`,
     starring: [
