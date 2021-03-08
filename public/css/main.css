@@ -811,6 +811,7 @@ main {
   font-weight: bold; }
 
 .movie-card__details-value {
+  white-space: pre-line;
   color: #131313; }
 
 .movie-card__reviews {
