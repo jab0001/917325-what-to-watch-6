@@ -811,6 +811,7 @@ main {
   font-weight: bold; }
 
 .movie-card__details-value {
+  white-space: pre-line;
   color: #131313; }
 
 .movie-card__reviews {
@@ -850,7 +851,8 @@ main {
   color: #EEE5B5;
   text-decoration: none;
   position: relative;
-  padding-bottom: 19px; }
+  padding-bottom: 19px;
+  cursor: pointer; }
   .movie-nav__link::after {
     content: '';
     position: absolute;
